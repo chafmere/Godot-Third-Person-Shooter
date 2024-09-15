@@ -1,0 +1,14 @@
+# Created by Kenney (www.kenney.nl)
+
+newmtl dark
+Kd 0.1962442 0.2375655 0.2830189
+
+newmtl green
+Kd 0.2719384 0.9150943 0.6771638
+
+newmtl metal
+Kd 0.7960784 0.8156863 0.8784314
+
+newmtl darkMetal
+Kd 0.5921568 0.6352941 0.7686275
+

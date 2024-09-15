@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmu2kd3kuqmms"]
+
+[ext_resource type="Script" path="res://Weapons/Models/ForCharacterModel/Scenes/RigWeapon.gd" id="1_4mkv0"]
+[ext_resource type="PackedScene" uid="uid://dfkt0vu0onnif" path="res://Weapons/Models/ForCharacterModel/blasterN.glb" id="2_2ewwi"]
+
+[node name="pistol" type="Node3D" node_paths=PackedStringArray("left_hand_target", "bullet_point")]
+script = ExtResource("1_4mkv0")
+left_hand_target = NodePath("Marker3D2")
+bullet_point = NodePath("Marker3D")
+
+[node name="blasterN2" parent="." instance=ExtResource("2_2ewwi")]
+transform = Transform3D(80, 0, 0, 0, 80, 0, 0, 0, 80, 0, 0, 3.59749)
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.95734, 30.9988)
+
+[node name="Marker3D2" type="Marker3D" parent="."]
+transform = Transform3D(-0.458952, -0.438428, -0.772751, -0.826345, -0.108857, 0.552544, -0.32637, 0.89215, -0.312332, 7.11954, -7.60025, -12.3928)

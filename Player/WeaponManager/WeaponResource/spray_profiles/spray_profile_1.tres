@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SprayProfile" load_steps=3 format=3 uid="uid://h3dguk6rwbw1"]
+
+[ext_resource type="Script" path="res://Player/WeaponManager/WeaponResource/scripts/spray.gd" id="1_ljvdp"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lkhkj"]
+
+[resource]
+script = ExtResource("1_ljvdp")
+spray_noise = SubResource("FastNoiseLite_lkhkj")
+random_spray_multiplier = 1.0
+base_heat = 1.332
+max_limit = 50.0
+updwards_lock = false
+True_Random = true

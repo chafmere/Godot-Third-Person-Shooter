@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dn4qs1xs7204q"
+path="res://.godot/imported/foamBulletB-low.obj-a88f1cd317b8117dc055a05ded95d836.mesh"
+
+[deps]
+
+files=["res://.godot/imported/foamBulletB-low.obj-a88f1cd317b8117dc055a05ded95d836.mesh"]
+
+source_file="res://Weapons/Models/kenney_blaster-kit/Models/OBJ format/foamBulletB-low.obj"
+dest_files=["res://.godot/imported/foamBulletB-low.obj-a88f1cd317b8117dc055a05ded95d836.mesh", "res://.godot/imported/foamBulletB-low.obj-a88f1cd317b8117dc055a05ded95d836.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,191 @@
+[gd_scene load_steps=23 format=3 uid="uid://c04chsbiikwgf"]
+
+[ext_resource type="Script" path="res://Player/Player.gd" id="1_5sywy"]
+[ext_resource type="Script" path="res://Player/hub/hud.gd" id="2_64kpk"]
+[ext_resource type="Script" path="res://Player/CameraSystem/camera_system.gd" id="2_rj5kh"]
+[ext_resource type="Script" path="res://Player/MovementStateMachine.gd" id="2_swb30"]
+[ext_resource type="Script" path="res://Player/States/idle.gd" id="3_gmcgn"]
+[ext_resource type="Resource" uid="uid://baj48o18khv8u" path="res://Player/States/movement_stats.tres" id="3_tr1wr"]
+[ext_resource type="Script" path="res://Player/States/run.gd" id="4_iefci"]
+[ext_resource type="Script" path="res://Player/States/jump.gd" id="5_i5tgv"]
+[ext_resource type="Script" path="res://Player/States/sprint.gd" id="6_2ok28"]
+[ext_resource type="Script" path="res://Player/States/boost.gd" id="7_c26cq"]
+[ext_resource type="Script" path="res://Player/States/fall.gd" id="8_rvqxo"]
+[ext_resource type="PackedScene" uid="uid://qu4rvoipxlf2" path="res://Player/Model/test_character.tscn" id="11_fhlmf"]
+[ext_resource type="Script" path="res://Player/WeaponManager/weapon_manager.gd" id="12_ms260"]
+[ext_resource type="Script" path="res://Player/WeaponManager/WeaponResource/scripts/weapon_slot.gd" id="13_8xpbb"]
+[ext_resource type="Resource" uid="uid://c7i5ptsmcdte8" path="res://Player/WeaponManager/WeaponResource/rifle_1.tres" id="14_gs3ga"]
+[ext_resource type="Script" path="res://Player/WeaponManager/WeaponResource/scripts/ammo_resource.gd" id="14_yjhtl"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ibbsm"]
+radius = 0.6
+height = 1.81135
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ldkeo"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_et1od"]
+radius = 0.1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_upr57"]
+radius = 0.4
+
+[sub_resource type="Resource" id="Resource_hqoxb"]
+script = ExtResource("14_yjhtl")
+current_ammo = 30
+reserve_ammo = 60
+magazine_capacity = 30
+
+[sub_resource type="Resource" id="Resource_2571v"]
+script = ExtResource("13_8xpbb")
+weapon = ExtResource("14_gs3ga")
+ammo = SubResource("Resource_hqoxb")
+ammo_clip = 1
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 2
+script = ExtResource("1_5sywy")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.5
+offset_top = -2.5
+offset_right = 2.5
+offset_bottom = 2.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="Hud" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_64kpk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Hud"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Hud/VBoxContainer"]
+layout_mode = 2
+
+[node name="CurrentAmmoLabel" type="Label" parent="CanvasLayer/Hud/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Current_Ammo: "
+
+[node name="CurrentAmmo" type="Label" parent="CanvasLayer/Hud/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "30"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Hud/VBoxContainer"]
+layout_mode = 2
+
+[node name="ReserveAmmoLabel" type="Label" parent="CanvasLayer/Hud/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Reserve_Ammo: "
+
+[node name="ReserveAmmo" type="Label" parent="CanvasLayer/Hud/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "60"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.106566, 0)
+shape = SubResource("CapsuleShape3D_ibbsm")
+
+[node name="test_character" parent="." instance=ExtResource("11_fhlmf")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.29086, -1, 0.477901)
+
+[node name="MovementStateMachine" type="Node" parent="." node_paths=PackedStringArray("animation_tree_player", "start_state")]
+script = ExtResource("2_swb30")
+movement_stats = ExtResource("3_tr1wr")
+animation_tree_player = NodePath("../test_character/AnimationTree")
+start_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="MovementStateMachine"]
+script = ExtResource("3_gmcgn")
+
+[node name="Run" type="Node" parent="MovementStateMachine"]
+script = ExtResource("4_iefci")
+
+[node name="Sprint" type="Node" parent="MovementStateMachine"]
+script = ExtResource("6_2ok28")
+
+[node name="Jump" type="Node" parent="MovementStateMachine"]
+script = ExtResource("5_i5tgv")
+
+[node name="Fall" type="Node" parent="MovementStateMachine"]
+script = ExtResource("8_rvqxo")
+
+[node name="Boost" type="Node" parent="MovementStateMachine"]
+script = ExtResource("7_c26cq")
+
+[node name="Camera" type="Node3D" parent="." node_paths=PackedStringArray("character", "character_collider", "camera", "over_head_spring_arm", "side_spring_arm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.760225, 0.108)
+script = ExtResource("2_rj5kh")
+character = NodePath("..")
+character_collider = NodePath("../CollisionShape3D")
+aim_side_spring_length = 0.5
+aim_fov = 55.0
+sprint_increase_fov = 20.0
+camera = NodePath("EdgeSpringArm/OverHeadSpringArm/Camera3D_1")
+over_head_spring_arm = NodePath("EdgeSpringArm/OverHeadSpringArm")
+side_spring_arm = NodePath("EdgeSpringArm")
+
+[node name="EdgeSpringArm" type="SpringArm3D" parent="Camera"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+shape = SubResource("SphereShape3D_ldkeo")
+spring_length = 0.5
+
+[node name="OverHeadSpringArm" type="SpringArm3D" parent="Camera/EdgeSpringArm"]
+transform = Transform3D(-4.37114e-08, 0, -0.999998, 0, 0.999999, 0, 0.999999, 0, -4.37113e-08, -2.23517e-08, 0, 0.5)
+shape = SubResource("SphereShape3D_et1od")
+spring_length = 1.5
+
+[node name="Camera3D_1" type="Camera3D" parent="Camera/EdgeSpringArm/OverHeadSpringArm"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.5, 0)
+current = true
+
+[node name="BodyDetection" type="Area3D" parent="Camera/EdgeSpringArm/OverHeadSpringArm"]
+transform = Transform3D(1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, 0.0522492, 0, 1.89966)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera/EdgeSpringArm/OverHeadSpringArm/BodyDetection"]
+shape = SubResource("SphereShape3D_upr57")
+
+[node name="WeaponManager" type="Node3D" parent="."]
+script = ExtResource("12_ms260")
+weapon_slots = Array[ExtResource("13_8xpbb")]([SubResource("Resource_2571v")])
+
+[node name="StateLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.16908, 0.468697, 0)
+pixel_size = 0.001
+billboard = 1
+text = "STATE: TEST"
+font_size = 132
+
+[connection signal="change_weapon_finished" from="test_character" to="WeaponManager" method="_on_test_character_change_weapon_finished"]
+[connection signal="reload_finished" from="test_character" to="WeaponManager" method="_on_reload_finished"]
+[connection signal="on_state_changed" from="MovementStateMachine" to="." method="_on_movement_state_machine_on_state_changed"]
+[connection signal="on_sprinting" from="MovementStateMachine/Sprint" to="test_character" method="_on_sprint_on_sprinting"]
+[connection signal="on_sprinting" from="MovementStateMachine/Sprint" to="Camera" method="_on_sprint_on_sprinting"]
+[connection signal="on_sprinting" from="MovementStateMachine/Sprint" to="WeaponManager" method="_on_sprint_on_sprinting"]
+[connection signal="on_camera_rotated" from="Camera" to="test_character" method="_on_camera_on_camera_rotated"]
+[connection signal="body_entered" from="Camera/EdgeSpringArm/OverHeadSpringArm/BodyDetection" to="Camera/EdgeSpringArm/OverHeadSpringArm" method="_on_body_detection_body_entered"]
+[connection signal="body_exited" from="Camera/EdgeSpringArm/OverHeadSpringArm/BodyDetection" to="Camera/EdgeSpringArm/OverHeadSpringArm" method="_on_body_detection_body_exited"]
+[connection signal="weapon_changed" from="WeaponManager" to="test_character" method="_on_weapon_manager_weapon_changed"]
+[connection signal="weapon_fired" from="WeaponManager" to="CanvasLayer/Hud" method="_on_weapon_manager_weapon_fired"]
+[connection signal="weapon_fired" from="WeaponManager" to="test_character" method="_on_weapon_manager_weapon_fired"]
+[connection signal="weapon_reload_completed" from="WeaponManager" to="CanvasLayer/Hud" method="_on_weapon_manager_weapon_reload_completed"]
+[connection signal="weapon_reloaded" from="WeaponManager" to="test_character" method="_on_weapon_manager_weapon_reloaded"]

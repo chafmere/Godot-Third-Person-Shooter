@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyjmxv5a8sgoo"]
+
+[ext_resource type="PackedScene" uid="uid://qgjeosgcvdjh" path="res://Weapons/Models/ForCharacterModel/blasterD.glb" id="1_1vg5i"]
+[ext_resource type="Script" path="res://Weapons/Models/ForCharacterModel/Scenes/RigWeapon.gd" id="1_fr23f"]
+
+[node name="Rifle" type="Node3D" node_paths=PackedStringArray("left_hand_target", "bullet_point")]
+script = ExtResource("1_fr23f")
+left_hand_target = NodePath("LeftHandTarget")
+bullet_point = NodePath("BulletPoint")
+
+[node name="blasterD2" parent="." instance=ExtResource("1_1vg5i")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+
+[node name="LeftHandTarget" type="Node3D" parent="."]
+transform = Transform3D(-0.414308, -0.6859, -0.598239, -0.0452971, -0.640953, 0.766243, -0.909009, 0.344559, 0.234483, 0.886108, -4.53355, 26.1346)
+
+[node name="BulletPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.02497, 48.7628)
+gizmo_extents = 8.42

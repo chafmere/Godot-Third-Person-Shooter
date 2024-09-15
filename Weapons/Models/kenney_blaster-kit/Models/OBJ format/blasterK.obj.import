@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dih0yyqhfld8h"
+path="res://.godot/imported/blasterK.obj-a74723bb94e2c8b012bdfad4be0eb235.mesh"
+
+[deps]
+
+files=["res://.godot/imported/blasterK.obj-a74723bb94e2c8b012bdfad4be0eb235.mesh"]
+
+source_file="res://Weapons/Models/kenney_blaster-kit/Models/OBJ format/blasterK.obj"
+dest_files=["res://.godot/imported/blasterK.obj-a74723bb94e2c8b012bdfad4be0eb235.mesh", "res://.godot/imported/blasterK.obj-a74723bb94e2c8b012bdfad4be0eb235.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

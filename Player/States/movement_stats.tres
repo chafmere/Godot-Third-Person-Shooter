@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="MovementStats" load_steps=2 format=3 uid="uid://baj48o18khv8u"]
+
+[ext_resource type="Script" path="res://Player/States/movement_stats.gd" id="1_vf21t"]
+
+[resource]
+script = ExtResource("1_vf21t")
+time_to_jump_apex = 0.5
+time_to_land = 0.4
+jump_height = 1.0
+jump_distance = 4.0
+acceleration = 10000.0
+sprint_speed_multiplier = 2.0
+walk_speed_multiplier = 0.5
+sprint_duration = 2.0

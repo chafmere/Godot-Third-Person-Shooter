@@ -1,0 +1,90 @@
+[gd_scene load_steps=10 format=3 uid="uid://c5fa34cvcw0l8"]
+
+[ext_resource type="Material" uid="uid://c7aff3xq1s3j7" path="res://Assets/prototype texture/Dark/prototype_dark.tres" id="1_5cthr"]
+[ext_resource type="PackedScene" uid="uid://c04chsbiikwgf" path="res://Player/Player.tscn" id="2_o4voc"]
+[ext_resource type="PackedScene" uid="uid://bwimd3kli48u8" path="res://Enemy/enemy.tscn" id="3_jn0uq"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2keo0"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_rvrt0"]
+sky_material = SubResource("ProceduralSkyMaterial_2keo0")
+
+[sub_resource type="Environment" id="Environment_rmfsg"]
+background_mode = 2
+sky = SubResource("Sky_rvrt0")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PrismMesh" id="PrismMesh_ye1o7"]
+material = ExtResource("1_5cthr")
+size = Vector3(15.825, 21.095, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1trpf"]
+size = Vector3(5, 5, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tfk1q"]
+size = Vector3(5, 5, 5)
+
+[node name="World" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rmfsg")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.85, 0)
+size = Vector3(50, 10, 50)
+material = ExtResource("1_5cthr")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+operation = 2
+size = Vector3(49, 10, 49)
+material = ExtResource("1_5cthr")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -6.12222, 1.0371, 0)
+mesh = SubResource("PrismMesh_ye1o7")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0.000802851, 0, 1, 0, -0.000802851, 0, 1, 8.43642, 4.94754, 0)
+size = Vector3(8, 8, 8)
+material = ExtResource("1_5cthr")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0.000802851, 0, 1, 0, -0.000802851, 0, 1, 8.44764, 6.17599, -7.97451)
+size = Vector3(8, 5.54311, 8)
+material = ExtResource("1_5cthr")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0.000802851, 0, 1, 0, -0.000802851, 0, 1, -17.6309, 1.74539, -12.6849)
+size = Vector3(2.23718, 1.52412, 1.57373)
+material = ExtResource("1_5cthr")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0.000802851, 0, 1, 0, -0.000802851, 0, 1, 8.44526, 1.82702, -6.31051)
+size = Vector3(8, 3.17568, 2.07471)
+material = ExtResource("1_5cthr")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("2_o4voc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.0697, 2.68014, -16.2404)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.12377, 1.47543, -13.6953)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_1trpf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_tfk1q")
+
+[node name="Enemy" parent="." instance=ExtResource("3_jn0uq")]
+transform = Transform3D(0.087347, 0, -0.996178, 0, 1, 0, 0.996178, 0, 0.087347, -5.04783, 1, -9.15089)

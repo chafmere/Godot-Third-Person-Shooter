@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dn8hmqm2owt5l"]
+
+[ext_resource type="Script" path="res://Player/WeaponManager/Projectiles/rigid_body_projectile.gd" id="1_vdylk"]
+[ext_resource type="PackedScene" uid="uid://dbrk2a3sy8b44" path="res://Player/Model/rigid_body_projectile/rigid_body_bullet.tscn" id="2_67t3m"]
+
+[node name="RigidBodyProjectile" type="Node3D"]
+script = ExtResource("1_vdylk")
+projectile_velocity = 50
+rigid_body_projectile = ExtResource("2_67t3m")

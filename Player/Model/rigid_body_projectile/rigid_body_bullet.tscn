@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbrk2a3sy8b44"]
+
+[ext_resource type="Script" path="res://Player/Model/rigid_body_projectile/rigid_body_bullet.gd" id="1_ahf5o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tytxk"]
+albedo_color = Color(0.0294932, 0.266677, 0.999992, 1)
+emission_enabled = true
+emission = Color(0.0854906, 0.323126, 1, 1)
+emission_energy_multiplier = 7.59
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tvrjo"]
+material = SubResource("StandardMaterial3D_tytxk")
+radius = 0.055
+height = 0.45
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o75eo"]
+radius = 0.146357
+height = 0.480225
+
+[node name="RigidBody3D" type="RigidBody3D"]
+collision_layer = 8
+collision_mask = 13
+mass = 0.2
+gravity_scale = 0.1
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 5
+script = ExtResource("1_ahf5o")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_tvrjo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_o75eo")
