@@ -18,7 +18,7 @@ func _on_movement_state_machine_on_state_changed(current_state: Node) -> void:
 func check_for_impending_landing()->Dictionary:
 	var pos: Vector3 = global_position
 	var pos_end: Vector3  = pos
-	pos_end.y = pos.y + -2
+	pos_end.y = pos.y + -1
 	
 	var ray:PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(pos,pos_end)
 	ray.exclude = [get_rid()]

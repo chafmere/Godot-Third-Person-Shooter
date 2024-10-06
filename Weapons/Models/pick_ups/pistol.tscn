@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8wacgb7vinv8"]
+
+[ext_resource type="Script" path="res://Weapons/Models/pick_ups/weapon_pick_up.gd" id="1_ffk40"]
+[ext_resource type="PackedScene" uid="uid://dfkt0vu0onnif" path="res://Weapons/Models/ForCharacterModel/blasterN.glb" id="1_yshyc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tbe8a"]
+size = Vector3(0.127502, 0.332336, 0.592529)
+
+[node name="Pistol" type="RigidBody3D"]
+collision_layer = 8
+script = ExtResource("1_ffk40")
+
+[node name="blasterN2" parent="." instance=ExtResource("1_yshyc")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00210571, -0.00125122, 0.0057373)
+shape = SubResource("BoxShape3D_tbe8a")
+
+[editable path="blasterN2"]

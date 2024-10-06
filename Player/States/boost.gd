@@ -8,7 +8,8 @@ func _state_input(_event :InputEvent) -> void:
 		finished.emit("Fall")
 
 func _enter() -> void:
-	animation_tree["parameters/state/transition_request"] = "jump_idle"
+	animation_state_updated.emit("jump")
+	#animation_tree["parameters/state/transition_request"] = "jump_idle"
 
 func _update(_delta: float) -> void:
 	boost_amount -= _delta

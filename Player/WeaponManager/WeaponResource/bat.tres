@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=4 format=3 uid="uid://bi6a0jvkls3th"]
+
+[ext_resource type="PackedScene" uid="uid://yjkdy4cmoia7" path="res://Player/Model/rigid_body_projectile/melee_strike_projectile.tscn" id="1_7wu2m"]
+[ext_resource type="Script" path="res://Player/WeaponManager/WeaponResource/scripts/WeaponResource.gd" id="1_obd0w"]
+[ext_resource type="PackedScene" uid="uid://kxf2y0n1np8d" path="res://Weapons/Models/ForCharacterModel/Scenes/bat.tscn" id="2_4yxud"]
+
+[resource]
+script = ExtResource("1_obd0w")
+weapon_name = "bat"
+weapon_model = ExtResource("2_4yxud")
+has_ammo = false
+max_ammo = 0
+damage = 10
+auto_fire = true
+fire_range = 0
+fire_rate = 0.5
+weapon_state = "melee"
+can_be_dropped = false
+projectile_to_load = ExtResource("1_7wu2m")
+incremental_reload = false

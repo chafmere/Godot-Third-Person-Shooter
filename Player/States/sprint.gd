@@ -11,7 +11,8 @@ func _state_input(_event :InputEvent) -> void:
 
 func _enter() -> void:
 	on_sprinting.emit(true)
-	animation_tree["parameters/state/transition_request"] = "sprint"
+	animation_state_updated.emit("sprint")
+	#animation_tree["parameters/state/transition_request"] = "sprint"
 
 func _update(_delta: float) -> void:
 	set_direction(Vector2(0,1))

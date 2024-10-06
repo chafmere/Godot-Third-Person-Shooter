@@ -3,7 +3,8 @@ extends State
 class_name Motion
 
 signal on_velocity_updated(_vel: Vector3)
-signal update_direction(dir: Vector2)
+signal direction_updated(dir: Vector2)
+signal animation_state_updated(state: String)
 
 static var direction: Vector3 = Vector3.ZERO
 static var velocity: Vector3 = Vector3.ZERO
@@ -38,10 +39,11 @@ func set_speed()-> void:
 func set_direction(turn_rate: Vector2 = Vector2(1,1))-> void:
 	input_dir = Input.get_vector("left", "right", "up", "down")*turn_rate
 	direction = (owner.transform.basis * Vector3(input_dir.x, 0,input_dir.y)).normalized()
-	if animation_tree:
-		direction_blend.x = move_toward(direction_blend.x,input_dir.x,.05)
-		direction_blend.y = move_toward(direction_blend.y,input_dir.y,.05)
-		animation_tree["parameters/run_blend/blend_position"] = direction_blend
+	##TODO Convert to signal
+	#if animation_tree:
+	direction_blend.x = move_toward(direction_blend.x,input_dir.x,.05)
+	direction_blend.y = move_toward(direction_blend.y,input_dir.y,.05)
+	direction_updated.emit(direction_blend)
 
 func calculate_velocity(_speed: float, _direction: Vector3, delta: float) -> void:
 	velocity.x = move_toward(velocity.x, _direction.x*_speed,MOVEMENT_STATS.acceleration*delta)

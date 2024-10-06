@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=9 format=3 uid="uid://3p32abix05rt"]
+
+[ext_resource type="PackedScene" uid="uid://deanl68lp64e6" path="res://Weapons/Models/ForCharacterModel/clip_a_2.tscn" id="1_0m15q"]
+[ext_resource type="Script" path="res://Player/WeaponManager/WeaponResource/scripts/WeaponResource.gd" id="1_bsvwe"]
+[ext_resource type="PackedScene" uid="uid://dn8hmqm2owt5l" path="res://Player/Model/rigid_body_projectile/rigid_body_projectile_1.tscn" id="1_x8xgw"]
+[ext_resource type="PackedScene" uid="uid://dmu2kd3kuqmms" path="res://Weapons/Models/ForCharacterModel/Scenes/pistol.tscn" id="3_0lv8b"]
+[ext_resource type="Script" path="res://Player/WeaponManager/WeaponResource/scripts/spray.gd" id="4_5o7oe"]
+[ext_resource type="PackedScene" uid="uid://b8wacgb7vinv8" path="res://Weapons/Models/pick_ups/pistol.tscn" id="6_hgiv4"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_phgnu"]
+
+[sub_resource type="Resource" id="Resource_x7uig"]
+script = ExtResource("4_5o7oe")
+spray_noise = SubResource("FastNoiseLite_phgnu")
+random_spray_multiplier = 3.667
+base_heat = 1.0
+max_limit = 30.0
+updwards_lock = false
+True_Random = true
+
+[resource]
+script = ExtResource("1_bsvwe")
+weapon_name = "Pistol"
+weapon_model = ExtResource("3_0lv8b")
+has_ammo = true
+max_ammo = 18
+damage = 10
+auto_fire = false
+fire_range = 100
+fire_rate = 0.5
+weapon_state = "pistol"
+can_be_dropped = false
+weapon_to_drop = ExtResource("6_hgiv4")
+weapon_spray = SubResource("Resource_x7uig")
+projectile_to_load = ExtResource("1_x8xgw")
+incremental_reload = false
+ammo_clip = ExtResource("1_0m15q")

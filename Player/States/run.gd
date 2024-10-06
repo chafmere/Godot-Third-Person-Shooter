@@ -9,7 +9,9 @@ func _state_input(_event :InputEvent) -> void:
 	return super._state_input(_event)
 
 func _enter()->void:
-	animation_tree["parameters/state/transition_request"] = "run"
+	animation_state_updated.emit("run")
+	#animation_tree["parameters/state/transition_request"] = "run"
+	#animation_tree["parameters/pistol_blend/blend_amount"] = 1.0
 
 func _update(_delta: float) -> void:
 	set_direction()
@@ -22,3 +24,6 @@ func _update(_delta: float) -> void:
 		
 	if !check_floor():
 		finished.emit("Fall")
+
+func _exit() -> void:
+	return

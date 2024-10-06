@@ -2,8 +2,8 @@ extends OnGround
 
 
 func _enter()->void:
-	animation_tree["parameters/state/transition_request"] = "idle"
-
+	animation_state_updated.emit("idle")
+	
 func _update(_delta: float) -> void:
 	set_direction()
 	calculate_gravity(_delta)

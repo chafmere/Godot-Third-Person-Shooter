@@ -5,14 +5,14 @@
 
 [node name="pistol" type="Node3D" node_paths=PackedStringArray("left_hand_target", "bullet_point")]
 script = ExtResource("1_4mkv0")
-left_hand_target = NodePath("Marker3D2")
-bullet_point = NodePath("Marker3D")
+left_hand_target = NodePath("LeftHandTarget")
+bullet_point = NodePath("BulletPoint")
 
 [node name="blasterN2" parent="." instance=ExtResource("2_2ewwi")]
-transform = Transform3D(80, 0, 0, 0, 80, 0, 0, 0, 80, 0, 0, 3.59749)
+transform = Transform3D(-3.87103, 79.6892, -5.88667, -21.1536, 4.66131, 77.0117, 77.0555, 5.28298, 20.8458, 3.181, 11.158, 3.553)
 
-[node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.95734, 30.9988)
+[node name="BulletPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.51998, 40.363, 13.0829)
 
-[node name="Marker3D2" type="Marker3D" parent="."]
-transform = Transform3D(-0.458952, -0.438428, -0.772751, -0.826345, -0.108857, 0.552544, -0.32637, 0.89215, -0.312332, 7.11954, -7.60025, -12.3928)
+[node name="LeftHandTarget" type="Marker3D" parent="."]
+transform = Transform3D(-0.893081, -0.167826, 0.417423, -0.341513, 0.856884, -0.386159, -0.292876, -0.487426, -0.822581, -3.00406, 4.87217, 9.37263)

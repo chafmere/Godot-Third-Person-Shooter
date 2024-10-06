@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Player/WeaponManager/WeaponResource/scripts/WeaponResource.gd" id="1_2fdrr"]
 [ext_resource type="PackedScene" uid="uid://deanl68lp64e6" path="res://Weapons/Models/ForCharacterModel/clip_a_2.tscn" id="1_6knyn"]
 [ext_resource type="PackedScene" uid="uid://dn8hmqm2owt5l" path="res://Player/Model/rigid_body_projectile/rigid_body_projectile_1.tscn" id="1_cfq3k"]
-[ext_resource type="PackedScene" uid="uid://cyjmxv5a8sgoo" path="res://Weapons/Models/ForCharacterModel/rifle.tscn" id="2_r3ess"]
+[ext_resource type="PackedScene" uid="uid://cyjmxv5a8sgoo" path="res://Weapons/Models/ForCharacterModel/Scenes/rifle.tscn" id="2_r3ess"]
 [ext_resource type="Resource" uid="uid://h3dguk6rwbw1" path="res://Player/WeaponManager/WeaponResource/spray_profiles/spray_profile_1.tres" id="5_6pf2u"]
 
 [resource]
@@ -16,6 +16,7 @@ damage = 20
 auto_fire = true
 fire_range = 100
 fire_rate = 0.1
+weapon_state = "rifle"
 can_be_dropped = false
 weapon_spray = ExtResource("5_6pf2u")
 projectile_to_load = ExtResource("1_cfq3k")

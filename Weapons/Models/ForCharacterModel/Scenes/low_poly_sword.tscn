@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://jfnf4m2cncwm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_fhp7t"]
+size = Vector3(0.015, 1, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lwcn5"]
+size = Vector3(0.1, 0.06, 0.22)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_yre80"]
+top_radius = 0.02
+bottom_radius = 0.02
+height = 0.195
+radial_segments = 8
+
+[node name="LowPolySword" type="Node3D"]
+transform = Transform3D(-4.37114e-06, 100, -4.37114e-06, 0, -4.37114e-06, -100, -100, -4.37114e-06, 1.91069e-13, 0, 6.25599, 2.80543)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.585986, 0)
+mesh = SubResource("BoxMesh_fhp7t")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0970715, 0)
+mesh = SubResource("BoxMesh_lwcn5")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_yre80")

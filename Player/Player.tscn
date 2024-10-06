@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c04chsbiikwgf"]
+[gd_scene load_steps=28 format=3 uid="uid://c04chsbiikwgf"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_5sywy"]
 [ext_resource type="Script" path="res://Player/hub/hud.gd" id="2_64kpk"]
@@ -16,6 +16,8 @@
 [ext_resource type="Script" path="res://Player/WeaponManager/WeaponResource/scripts/weapon_slot.gd" id="13_8xpbb"]
 [ext_resource type="Resource" uid="uid://c7i5ptsmcdte8" path="res://Player/WeaponManager/WeaponResource/rifle_1.tres" id="14_gs3ga"]
 [ext_resource type="Script" path="res://Player/WeaponManager/WeaponResource/scripts/ammo_resource.gd" id="14_yjhtl"]
+[ext_resource type="Resource" uid="uid://3p32abix05rt" path="res://Player/WeaponManager/WeaponResource/pistol.tres" id="17_eh00p"]
+[ext_resource type="Resource" uid="uid://bi6a0jvkls3th" path="res://Player/WeaponManager/WeaponResource/bat.tres" id="18_kdsdh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ibbsm"]
 radius = 0.6
@@ -40,6 +42,23 @@ script = ExtResource("13_8xpbb")
 weapon = ExtResource("14_gs3ga")
 ammo = SubResource("Resource_hqoxb")
 ammo_clip = 1
+
+[sub_resource type="Resource" id="Resource_ppg22"]
+script = ExtResource("14_yjhtl")
+current_ammo = 9
+reserve_ammo = 18
+magazine_capacity = 9
+
+[sub_resource type="Resource" id="Resource_xfhg5"]
+script = ExtResource("13_8xpbb")
+weapon = ExtResource("17_eh00p")
+ammo = SubResource("Resource_ppg22")
+ammo_clip = 0
+
+[sub_resource type="Resource" id="Resource_x02ej"]
+script = ExtResource("13_8xpbb")
+weapon = ExtResource("18_kdsdh")
+ammo_clip = 0
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
@@ -106,10 +125,10 @@ shape = SubResource("CapsuleShape3D_ibbsm")
 [node name="test_character" parent="." instance=ExtResource("11_fhlmf")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.29086, -1, 0.477901)
 
-[node name="MovementStateMachine" type="Node" parent="." node_paths=PackedStringArray("animation_tree_player", "start_state")]
+[node name="MovementStateMachine" type="Node" parent="." node_paths=PackedStringArray("animation_controller", "start_state")]
 script = ExtResource("2_swb30")
 movement_stats = ExtResource("3_tr1wr")
-animation_tree_player = NodePath("../test_character/AnimationTree")
+animation_controller = NodePath("../test_character")
 start_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="MovementStateMachine"]
@@ -166,7 +185,7 @@ shape = SubResource("SphereShape3D_upr57")
 
 [node name="WeaponManager" type="Node3D" parent="."]
 script = ExtResource("12_ms260")
-weapon_slots = Array[ExtResource("13_8xpbb")]([SubResource("Resource_2571v")])
+weapon_slots = Array[ExtResource("13_8xpbb")]([SubResource("Resource_2571v"), SubResource("Resource_xfhg5"), SubResource("Resource_x02ej")])
 
 [node name="StateLabel" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.16908, 0.468697, 0)
@@ -184,8 +203,7 @@ font_size = 132
 [connection signal="on_camera_rotated" from="Camera" to="test_character" method="_on_camera_on_camera_rotated"]
 [connection signal="body_entered" from="Camera/EdgeSpringArm/OverHeadSpringArm/BodyDetection" to="Camera/EdgeSpringArm/OverHeadSpringArm" method="_on_body_detection_body_entered"]
 [connection signal="body_exited" from="Camera/EdgeSpringArm/OverHeadSpringArm/BodyDetection" to="Camera/EdgeSpringArm/OverHeadSpringArm" method="_on_body_detection_body_exited"]
+[connection signal="ammo_changed" from="WeaponManager" to="CanvasLayer/Hud" method="_on_weapon_manager_ammo_changed"]
 [connection signal="weapon_changed" from="WeaponManager" to="test_character" method="_on_weapon_manager_weapon_changed"]
-[connection signal="weapon_fired" from="WeaponManager" to="CanvasLayer/Hud" method="_on_weapon_manager_weapon_fired"]
 [connection signal="weapon_fired" from="WeaponManager" to="test_character" method="_on_weapon_manager_weapon_fired"]
-[connection signal="weapon_reload_completed" from="WeaponManager" to="CanvasLayer/Hud" method="_on_weapon_manager_weapon_reload_completed"]
 [connection signal="weapon_reloaded" from="WeaponManager" to="test_character" method="_on_weapon_manager_weapon_reloaded"]

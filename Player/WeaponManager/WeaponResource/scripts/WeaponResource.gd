@@ -22,6 +22,7 @@ class_name WeaponResource
 @export var fire_rate: float = .3
 
 @export_group("Weapon Behaviour")
+@export_enum("pistol", "rifle", "melee") var weapon_state: String
 ##If Checked the weapon drop scene MUST be provided
 @export var can_be_dropped: bool
 ## The Rigid body to spawn for the weapon. It should be a Rigid Body of type Weapon_Pick_Up and have a matching weapon_name.

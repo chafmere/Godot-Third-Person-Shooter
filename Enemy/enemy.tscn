@@ -882,6 +882,7 @@ script = ExtResource("1_cc3y7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.917311, 0)
+visible = false
 shape = SubResource("CapsuleShape3D_cxev5")
 
 [node name="Ybot" type="Node3D" parent="."]

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://yjkdy4cmoia7"]
+
+[ext_resource type="Script" path="res://Player/Model/rigid_body_projectile/melee_strike_projectile.gd" id="1_c3tv5"]
+[ext_resource type="Script" path="res://Player/Model/rigid_body_projectile/rigid_body_bullet.gd" id="2_esr4k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j7mgw"]
+size = Vector3(0.707947, 0.256502, 0.315941)
+
+[node name="MeleeStrikeProjectile" type="Node3D" node_paths=PackedStringArray("melee_strike_area")]
+script = ExtResource("1_c3tv5")
+melee_strike_area = NodePath("AnimatableBody3D")
+strike_delay = 0.1
+strike_timeout = 0.4
+
+[node name="AnimatableBody3D" type="RigidBody3D" parent="."]
+disable_mode = 2
+collision_layer = 0
+collision_mask = 0
+lock_rotation = true
+freeze = true
+freeze_mode = 1
+script = ExtResource("2_esr4k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D"]
+transform = Transform3D(0.925415, -0.378955, 0, 0.378955, 0.925415, 0, 0, 0, 1, 0.300504, 0.14459, 0.00173569)
+shape = SubResource("BoxShape3D_j7mgw")
